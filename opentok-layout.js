@@ -722,8 +722,6 @@ var _getLayout = __webpack_require__(0);
 var _layout = __webpack_require__(1);
 
 module.exports = function initLayoutContainer(container, initialOpts) {
-  var _this = this;
-
   var opts = initialOpts;
   var win = opts && opts.window || (typeof window === 'undefined' ? undefined : window);
   container = typeof container === 'string' ? win.document.querySelector(container) : container;
@@ -736,10 +734,10 @@ module.exports = function initLayoutContainer(container, initialOpts) {
 
   return {
     layout: function layout() {
-      return _layout(_this, container, opts);
+      return _layout(container, opts);
     },
     getLayout: function getLayout() {
-      return _getLayout(_this, opts);
+      return _getLayout(opts);
     },
     updateOptions: function updateOptions(newOpts) {
       opts = newOpts;

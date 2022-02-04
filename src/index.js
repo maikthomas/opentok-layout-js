@@ -28,8 +28,8 @@ module.exports = function initLayoutContainer(container, initialOpts) {
   }
 
   return {
-    layout: () => layout(this, container, opts),
-    getLayout: () => getLayout(this, opts),
+    layout: () => layout(container, opts),
+    getLayout: () => getLayout(opts),
     updateOptions: (newOpts) => { opts = newOpts; },
   };
 };
