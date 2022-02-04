@@ -718,10 +718,13 @@ module.exports = function (container, opts) {
 // in browser globals context, ...? (when using bower, there are dependencies that it has handled
 // for you, so these might be safe to assume)
 
-var getLayout = __webpack_require__(0);
-var layout = __webpack_require__(1);
+var _getLayout = __webpack_require__(0);
+var _layout = __webpack_require__(1);
 
-module.exports = function initLayoutContainer(container, opts) {
+module.exports = function initLayoutContainer(container, initialOpts) {
+  var _this = this;
+
+  var opts = initialOpts;
   var win = opts && opts.window || (typeof window === 'undefined' ? undefined : window);
   container = typeof container === 'string' ? win.document.querySelector(container) : container;
   if (!(typeof (win && win.HTMLElement) === 'undefined' || container instanceof win.HTMLElement) && !opts) {
@@ -732,8 +735,15 @@ module.exports = function initLayoutContainer(container, opts) {
   }
 
   return {
-    layout: layout.bind(this, container, opts),
-    getLayout: getLayout.bind(this, opts)
+    layout: function layout() {
+      return _layout(_this, container, opts);
+    },
+    getLayout: function getLayout() {
+      return _getLayout(_this, opts);
+    },
+    updateOptions: function updateOptions(newOpts) {
+      opts = newOpts;
+    }
   };
 };
 
