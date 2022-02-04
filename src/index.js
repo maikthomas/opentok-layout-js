@@ -16,7 +16,8 @@
 const getLayout = require('./getLayout');
 const layout = require('./layout');
 
-module.exports = function initLayoutContainer(container, opts) {
+module.exports = function initLayoutContainer(container, initialOpts) {
+  let opts = initialOpts;
   const win = (opts && opts.window) || (typeof window === 'undefined' ? undefined : window);
   container = typeof container === 'string' ? win.document.querySelector(container) : container;
   if (!(typeof (win && win.HTMLElement) === 'undefined' || container instanceof win.HTMLElement) && !opts) {
@@ -27,7 +28,8 @@ module.exports = function initLayoutContainer(container, opts) {
   }
 
   return {
-    layout: layout.bind(this, container, opts),
-    getLayout: getLayout.bind(this, opts),
+    layout: () => layout(this, container, opts),
+    getLayout: () => getLayout(this, opts),
+    updateOptions: (newOpts) => { opts = newOpts; },
   };
 };
