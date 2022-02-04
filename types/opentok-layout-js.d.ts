@@ -46,6 +46,7 @@ declare module 'opentok-layout-js' {
   export type LayoutContainer = {
     getLayout: GetLayout;
     layout: () => void;
+    updateOptions: (options: Options) => void;
   };
 
   export default function initLayoutContainer(
