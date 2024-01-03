@@ -621,7 +621,8 @@ exports["default"] = (function (container, opts) {
             height: "".concat(h, "px")
         };
         var fixAspectRatio = function fixAspectRatio() {
-            var sub = elem.querySelector('.OT_root');
+            var rootSelector = opts.rootClass || '.OT_root';
+            var sub = elem.querySelector(rootSelector);
             if (sub) {
                 // If this is the parent of a subscriber or publisher then we need
                 // to force the mutation observer on the publisher or subscriber to
