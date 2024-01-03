@@ -56,7 +56,8 @@ export default (container: HTMLElement, opts: Options) => {
     };
 
     const fixAspectRatio = function fixAspectRatio() {
-      const sub = elem.querySelector('.OT_root') as HTMLElement;
+      const rootSelector = opts.rootClass || '.OT_root';
+      const sub = elem.querySelector(rootSelector) as HTMLElement;
       if (sub) {
         // If this is the parent of a subscriber or publisher then we need
         // to force the mutation observer on the publisher or subscriber to

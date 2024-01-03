@@ -32,6 +32,7 @@ declare module 'opentok-layout-js' {
     smallMaxWidth?: number;
     scaleLastRow?: boolean;
     bigScaleLastRow?: boolean;
+    rootClass?: string;
     onLayout?: OnLayout,
     window?: Window;
   };
